@@ -204,4 +204,6 @@ cd frontend && npm run dev
 
 ## Author
 
-Built as a final-year project by [Noor Aisha](https://github.com/NoorAisha25).
+One of My Major Project [Noor Aisha](https://github.com/NoorAisha25).
+
+
