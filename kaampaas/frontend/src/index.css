@@ -1,0 +1,767 @@
+@keyframes KaamPaas-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 122, 0, 0.5); }
+  50% { box-shadow: 0 0 0 8px rgba(255, 122, 0, 0); }
+}
+
+/* ---- Responsive grid utilities (replace fixed inline column counts) ---- */
+.grid-2-responsive {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.grid-3-responsive {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.grid-4-responsive {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .grid-4-responsive { grid-template-columns: repeat(2, 1fr); }
+  .grid-3-responsive { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .grid-4-responsive { grid-template-columns: 1fr; }
+  .grid-3-responsive { grid-template-columns: 1fr; }
+  .grid-2-responsive { grid-template-columns: 1fr; }
+}
+
+:root {
+  --KaamPaas-blue: #2563eb;
+  --KaamPaas-green: #22c55e;
+  --KaamPaas-orange: #ff7a00;
+  --KaamPaas-pink: #ec4899;
+  --KaamPaas-purple: #7c3aed;
+
+  --text-dark: #1a1a2e;
+  --text-muted: #6b7280;
+  --bg: #fdf9f5;
+  --card-bg: #ffffff;
+  --border: #e5e7eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text-dark);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px 80px;
+}
+
+/* ---- Navbar ---- */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  row-gap: 10px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.navbar-logo {
+  width: 70px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 10px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.navbar-title {
+  font-weight: 800;
+  font-size: 34px;
+  line-height: 1.2;
+  margin: 0;
+  white-space: nowrap;
+  letter-spacing: 1.2px;
+  font-family: 'Nunito', 'Poppins', sans-serif;
+  display: inline-flex;
+  gap: 2px; 
+  border-radius: 20px;
+}
+
+
+.navbar-title .Kaam {
+  background: linear-gradient(135deg, #1664ac, #066079);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+
+.navbar-title .Paas {
+  background: linear-gradient(135deg, #229f29, #69a823);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Shared shadow (default state) */
+.navbar-title span {
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Hover effect applied to the whole title */
+.navbar-title:hover span {
+  transform: scale(1.06);
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  text-shadow: 0 3px 8px rgba(0,0,0,0.3),
+               0 0 14px rgba(0,198,255,0.5);
+}
+
+
+
+.navbar-tagline {
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin: 0;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.navbar-links a {
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.navbar-links a.active {
+  background: var(--text-dark);
+  color: white;
+}
+
+.lang-switcher {
+  display: flex;
+  gap: 4px;
+  margin-left: 12px;
+}
+
+.lang-switcher button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: white;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.lang-switcher button.active {
+  background: var(--KaamPaas-orange);
+  color: white;
+  border-color: var(--KaamPaas-orange);
+}
+
+/* ---- Buttons ---- */
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: var(--KaamPaas-orange);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 28px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.btn-dark {
+  background: var(--text-dark);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 28px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.btn-call {
+  background: var(--KaamPaas-green);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 700;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-mic {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--KaamPaas-orange);
+  color: white;
+  border: none;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+/* ---- Cards ---- */
+.card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid var(--border);
+}
+
+.quick-action-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+.quick-action-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+/* ---- Skill grid ---- */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.skill-chip {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.skill-chip .icon {
+  font-size: 26px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.skill-chip.selected {
+  border-color: var(--KaamPaas-orange);
+  background: #fff7ed;
+}
+
+/* ---- Skill pills (Find Workers filter bar) ---- */
+.skill-pills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+.skill-pill {
+  white-space: nowrap;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.skill-pill.active {
+  background: var(--text-dark);
+  color: white;
+  border-color: var(--text-dark);
+}
+
+/* ---- Worker cards ---- */
+.worker-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.worker-card {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid var(--border);
+}
+
+.worker-photo {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  background: #f0f0f0;
+}
+
+.worker-name-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.verified-badge {
+  color: var(--KaamPaas-green);
+  font-size: 13px;
+}
+
+.worker-skill {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 4px 0 8px;
+}
+
+.worker-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.worker-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.worker-rate {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.worker-rate span {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  display: block;
+}
+
+/* ---- Forms ---- */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 15px;
+  margin-bottom: 0;
+  font-family: inherit;
+}
+
+.field-group {
+  margin-bottom: 20px;
+}
+
+.field-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.field-with-mic {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.field-with-mic input,
+.field-with-mic textarea {
+  flex: 1;
+  min-width: 0; /* prevents flex overflow on narrow screens */
+}
+
+/* ---- Urgency pills ---- */
+.urgency-group {
+  display: flex;
+  gap: 10px;
+}
+
+.urgency-pill {
+  flex: 1;
+  padding: 14px;
+  text-align: center;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.urgency-pill.active {
+  border-color: var(--KaamPaas-orange);
+  background: #fff7ed;
+  color: var(--KaamPaas-orange);
+}
+
+/* ---- Status badges (My Jobs) ---- */
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-right: 6px;
+}
+
+.status-open { background: #d1fae5; color: #065f46; }
+.status-accepted { background: #dbeafe; color: #1e40af; }
+.status-in_progress { background: #e0e7ff; color: #3730a3; }
+.status-completed { background: #f3f4f6; color: #374151; }
+.status-cancelled { background: #fee2e2; color: #991b1b; }
+
+.error-text {
+  color: #dc2626;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.section-eyebrow {
+  color: var(--KaamPaas-orange);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-size: 34px;
+  font-weight: 800;
+  margin: 6px 0 20px;
+}
+
+/* ---- Icon-aware buttons and badges ---- */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.trust-strip {
+  display: flex;
+  gap: 28px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.trust-strip .icon-btn {
+  gap: 6px;
+}
+
+/* ---- Hero section ---- */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  padding: 48px 0 64px;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.hero-pill .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--KaamPaas-green);
+}
+
+.hero-heading {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.hero-media {
+  position: relative;
+}
+
+.hero-media-main {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
+
+.hero-media-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.hero-media-grid img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}
+
+.hero-rating-card {
+  position: absolute;
+  top: 20px;
+  right: -16px;
+  background: white;
+  border-radius: 16px;
+  padding: 14px 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-rating-card .star-icon {
+  color: #f59e0b;
+}
+
+.hero-verified-card {
+  position: absolute;
+  bottom: -16px;
+  left: 16px;
+  background: white;
+  border-radius: 14px;
+  padding: 10px 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 64px;
+}
+
+.feature-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-heading { font-size: 40px; }
+  .feature-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- "Skills near you" landing section ---- */
+.trades-section {
+  margin-top: 72px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+}
+
+.trades-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 24px;
+}
+
+.trades-see-all {
+  color: var(--KaamPaas-orange);
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.trade-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.trade-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+/* This is the "bubble out" pop effect on hover/click */
+.trade-card:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+  border-color: var(--KaamPaas-orange);
+}
+
+.trade-card:active {
+  transform: scale(0.97);
+}
+
+.trade-icon-badge {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: #fee7d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+  transition: background 0.18s ease;
+}
+
+.trade-card:hover .trade-icon-badge {
+  background: var(--KaamPaas-orange);
+}
+
+.trade-card:hover .trade-icon-badge svg {
+  color: white;
+}
+
+.trade-card-label {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  .trade-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .worker-grid { grid-template-columns: 1fr; }
+  .skill-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ---- Tablet: worker cards go 2-up before dropping to 1-up on phones ---- */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .worker-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---- General mobile pass ---- */
+@media (max-width: 768px) {
+  .container { padding: 16px 12px 80px; }
+
+  .navbar { padding: 12px 16px; }
+  .navbar-tagline { display: none; } /* saves vertical space on small screens */
+  .navbar-links { width: 100%; justify-content: flex-start; }
+  .navbar-links a { padding: 8px 10px; font-size: 13px; }
+
+  .lang-switcher { gap: 3px; }
+  .lang-switcher button { width: 28px; height: 28px; font-size: 12px; }
+
+  .hero-heading { font-size: 34px; }
+  .hero-media-main { height: 260px; }
+  .hero-rating-card { right: 0; top: 12px; padding: 10px 14px; }
+  .hero-verified-card { left: 8px; bottom: -12px; padding: 8px 12px; }
+
+  .skill-grid { grid-template-columns: repeat(2, 1fr); }
+  .trade-grid { grid-template-columns: repeat(2, 1fr); }
+
+  section-title, .section-title { font-size: 26px; }
+}
+
+@media (max-width: 480px) {
+  .navbar-brand-text { display: none; } /* logo icon alone is enough on very narrow screens */
+  .hero-heading { font-size: 28px; }
+  .hero-media-grid { grid-template-columns: 1fr; }
+  .skill-grid { grid-template-columns: repeat(2, 1fr); }
+  .trade-grid { grid-template-columns: 1fr 1fr; }
+  .urgency-group { flex-direction: column; }
+  .worker-footer { flex-direction: column; align-items: stretch; gap: 10px; }
+  .worker-footer .btn-call { justify-content: center; }
+}
+
+/* Slightly larger touch targets on any touch-capable device, since the
+   target audience often uses budget Android phones with less precise
+   touchscreens. */
+@media (pointer: coarse) {
+  button, .skill-chip, .trade-card, .skill-pill, input, select, textarea {
+    min-height: 44px;
+  }
+}
