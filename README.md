@@ -1,6 +1,12 @@
-# KaamPaas — Work Nearby. Hire Nearby.
+<p align="center">
+  <img src="frontend/public/logo.png" alt="KaamPaas logo" width="110" />
+</p>
 
-**Live app:** https://kaampaas-beta.vercel.app/
+<h1 align="center">KaamPaas — Work Nearby. Hire Nearby.</h1>
+
+<p align="center">
+  <a href="https://kaampaas-beta.vercel.app/"><b>Live App</b></a> ·
+</p>
 
 A hyperlocal, voice-first hiring platform connecting daily-wage workers — plumbers, electricians, painters, masons, domestic help — with people who need to hire them nearby, today.
 
@@ -16,7 +22,6 @@ The people this project is actually built for often can't rely on any of those a
 - **Regional language, not English** — most existing platforms offer at best a thin translation layer
 - **No digital trust signal** — a worker with years of reliable, honest work has no way to prove it to a stranger online
 - **Distance matters enormously** — a job 15km away might not be worth the bus fare and travel time, but a city-wide or state-wide search doesn't know that
-
 
 
 ## The Solution
@@ -177,7 +182,6 @@ cd frontend && npm run dev
 |---|---|---|
 | Hirer | `8000000001` | `demo1234` |
 
-
 ## Deployment
 
 - **Backend:** Render (root directory `backend`, build `npm install`, start `npm start`)
@@ -186,24 +190,21 @@ cd frontend && npm run dev
 
 ## What's built vs. What's future work
 
-- **Built:** 
-   - full auth,
-   - two-sided review and trust-score system,
-   - real GPS-radius matching with city-name fallback,
-   - voice input across all major forms,
-   - 5-language UI,
-   -  photo upload,
-   -  admin stats dashboard,
-   -  WhatsApp/call contact buttons
-     
+- **Built:**
+- full auth,
+- two-sided review and trust-score system,
+- real GPS-radius matching with city-name fallback,
+- voice input across all major forms,
+- 5-language UI, photo upload,
+- admin stats dashboard,
+- WhatsApp/call contact buttons
+  
 - **Not built (Future Work):**
   - True page-view analytics (the admin dashboard reports registered users and job activity, not anonymous visitor traffic — that needs a dedicated tracking tool)
   - OTP-based phone verification (currently phone + password)
   - In-app payments/escrow
-  - A production-grade geocoding provider
+  - A production-grade geocoding provider — Nominatim (free) is used instead of a paid service like Google Places, which trades off some address coverage and rate limits for zero cost
 
 ## Author
 
-One of My Major Project [Noor Aisha](https://github.com/NoorAisha25).
-
-
+Built as One of Major project by [Noor Aisha](https://github.com/NoorAisha25).
