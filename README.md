@@ -59,7 +59,6 @@ KaamPaas is a hyperlocal, voice-first marketplace where a plumber, painter, or d
 
 ### Admin visibility
 - A separate admin account (role-gated, not just hidden) with a dashboard of registered worker/hirer counts, job status breakdowns, and recent signups
-- Honestly scoped: this reports **registered users and job activity**, not raw page-view traffic — that distinction is documented in the code, not glossed over
 
 ---
 
