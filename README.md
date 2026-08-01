@@ -26,7 +26,7 @@ The people this project is actually built for often can't rely on any of those a
 
 ## The Solution
 
-KaamPaas is a hyperlocal, voice-first marketplace where a plumber, painter, or domestic worker can register and find daily-wage work using their own voice in their own language — no typing required beyond a password. Hirers post jobs or search for workers within a real GPS radius (the same `$near` geospatial pattern Uber and Swiggy use), ranked not just by distance but by a transparent trust score built from completed jobs and two-sided ratings. Every job that finishes triggers a review from both sides, so reliable behaviour compounds into better visibility over time — the same mechanism that makes ride-hailing and food delivery trustworthy at scale, applied to informal daily-wage work instead.
+KaamPaas is a hyperlocal, voice-first marketplace where a plumber, painter, or domestic worker can register and find daily-wage work using their own voice in their own language — no typing required beyond a password. Hirers post jobs or search for workers within a real GPS radius, ranked not just by distance but by a transparent trust score built from completed jobs and two-sided ratings. Every job that finishes triggers a review from both sides, so reliable behaviour compounds into better visibility over time — the same mechanism that makes ride-hailing and food delivery trustworthy at scale, applied to informal daily-wage work instead.
 
 ---
 
@@ -43,7 +43,7 @@ KaamPaas is a hyperlocal, voice-first marketplace where a plumber, painter, or d
 ### Real hyperlocal matching, not city-wide search
 - GPS-based **Find Workers** and **Find Jobs**, using MongoDB's `2dsphere` index and `$near` queries within a configurable radius
 - Graceful fallback to city-name text search if location permission is denied
-- Location search-as-you-type (Swiggy/Uber-style autocomplete) using OpenStreetMap's free Nominatim service — no paid API key required
+- Location search-as-you-type using OpenStreetMap's free Nominatim service — no paid API key required
 
 ### A trust system that actually changes outcomes, not just a decoration
 - Every completed job triggers a **two-sided review** — hirer rates worker, worker rates hirer
