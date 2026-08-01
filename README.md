@@ -69,7 +69,7 @@ The part I think matters most is the trust system. After a job is done, both peo
 
 None of these were the only option, so here's the actual reasoning, in case it comes up.
 
-**React over Vue or Angular** — mostly familiarity and ecosystem size, honestly. Vite's dev server is also just fast, way faster than the old Create React App setup, which made the whole build-test-fix loop less annoying while I was iterating quickly.
+**React over Vue or Angular** — mostly familiarity and ecosystem size. Vite's dev server is also just fast, way faster than the old Create React App setup, which made the whole build-test-fix loop less annoying while I was iterating quickly.
 
 **Node + Express over something like Django or Spring** — one language across the whole stack. Writing both the frontend and backend in JavaScript meant less context-switching, and for a REST API of this size, Express doesn't add much overhead or boilerplate compared to a heavier framework.
 
