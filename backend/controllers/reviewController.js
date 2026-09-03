@@ -3,11 +3,6 @@ import Job from "../models/Job.js";
 import User from "../models/User.js";
 import { calculateTrustScore } from "../utils/trustScore.js";
 
-// POST /api/reviews
-// Body: { jobId, rating, comment }
-// The "toUser" is derived server-side from the job record, not trusted
-// from the client - this is what stops someone from rating a random
-// user instead of the actual person they worked with.
 export const createReview = async (req, res) => {
   try {
     const { jobId, rating, comment } = req.body;
@@ -31,7 +26,6 @@ export const createReview = async (req, res) => {
       return res.status(403).json({ message: "You were not part of this job" });
     }
 
-    // The reviewed party is always "the other side" of this specific job
     const toUserId = isHirer ? job.worker : job.hirer;
     if (!toUserId) {
       return res.status(400).json({ message: "This job has no assigned worker to review" });
@@ -45,10 +39,6 @@ export const createReview = async (req, res) => {
       comment,
     });
 
-    // Recalculate the reviewed user's rating average from ALL their reviews,
-    // then recompute their trust score - this is the step that makes the
-    // rating system actually affect future search ranking, not just a
-    // number sitting on a profile.
     const allReviews = await Review.find({ toUser: toUserId });
     const newRatingAvg = allReviews.reduce((sum, r) => sum + r.rating, 0) / allReviews.length;
 
@@ -67,7 +57,6 @@ export const createReview = async (req, res) => {
   }
 };
 
-// GET /api/reviews/user/:userId - all reviews someone has received
 export const getReviewsForUser = async (req, res) => {
   const reviews = await Review.find({ toUser: req.params.userId })
     .populate("fromUser", "name role")
