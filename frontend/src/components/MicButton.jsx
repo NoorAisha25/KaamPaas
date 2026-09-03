@@ -9,9 +9,6 @@ const FRIENDLY_ERRORS = {
   network: "Voice input needs an internet connection.",
 };
 
-// Uses the browser's built-in Web Speech API - free, zero backend cost.
-// Works in Chrome/Edge on desktop and Android. Requires HTTPS or
-// localhost (browsers block microphone access on plain HTTP).
 export default function MicButton({ onResult, lang = "en-IN" }) {
   const [listening, setListening] = useState(false);
   const [error, setError] = useState("");
@@ -31,9 +28,6 @@ export default function MicButton({ onResult, lang = "en-IN" }) {
       return;
     }
 
-    // If a previous session is somehow still active, stop it first -
-    // calling start() while already running throws a synchronous error
-    // that (if uncaught) makes the button look completely unresponsive.
     if (recognitionRef.current) {
       try {
         recognitionRef.current.abort();
@@ -66,9 +60,6 @@ export default function MicButton({ onResult, lang = "en-IN" }) {
     try {
       recognition.start();
     } catch (err) {
-      // This catches the "already started" InvalidStateError and any
-      // other synchronous failure, so a fast double-click never leaves
-      // the button silently dead.
       setError("Voice input didn't start. Please try again.");
       setListening(false);
     }
