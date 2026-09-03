@@ -1,5 +1,3 @@
-// Translation dictionary for KaamPaas's 5 supported languages.
-// Add new keys here, then use t("key") anywhere via useLanguage().
 export const TRANSLATIONS = {
   en: {
     greeting: "Hello",
