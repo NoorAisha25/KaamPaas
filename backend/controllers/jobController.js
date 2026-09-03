@@ -31,20 +31,12 @@ export const createJob = async (req, res) => {
   }
 };
 
-// GET /api/jobs/mine - powers the "My Jobs" section on the dashboard
 export const getMyJobs = async (req, res) => {
   const filter = req.user.role === "worker" ? { worker: req.user.id } : { hirer: req.user.id };
   const jobs = await Job.find(filter).sort({ createdAt: -1 });
   res.json(jobs);
 };
 
-// GET /api/jobs/matching?skill=all&lng=..&lat=..&radiusKm=..
-// Worker-facing "jobs near me" feed with a skill-pill filter bar
-// (matches the Find Jobs page). If no skill filter is given, defaults
-// to the worker's own registered skills as a personalized starting
-// view - the WorkIndia-style "job preference based on profile" idea -
-// but "all" (or any other skill pill) lets them browse everything open
-// nearby, not just their own trade.
 export const getMatchingJobs = async (req, res) => {
   try {
     if (req.user.role !== "worker") {
@@ -69,10 +61,6 @@ export const getMatchingJobs = async (req, res) => {
   }
 };
 
-// GET /api/jobs/:id
-// Also tells the frontend whether the logged-in user has already
-// submitted their review for this job, so the review form only shows
-// once and can't be resubmitted by refreshing the page.
 export const getJob = async (req, res) => {
   const job = await Job.findById(req.params.id)
     .populate("hirer", "name phone ratingAvg trustScore profilePhotoUrl")
@@ -118,15 +106,9 @@ export const updateJobStatus = async (req, res) => {
     if (newStatus === "completed") {
       job.completedAt = new Date();
 
-      // Both sides of a completed job earn reputation, not just the worker.
-      // A hirer who reliably follows through on posted jobs should also
-      // rank as more trustworthy - this is what makes the feedback loop
-      // genuinely two-sided instead of only judging workers.
       await User.findByIdAndUpdate(job.worker, { $inc: { jobsDone: 1 } });
       await User.findByIdAndUpdate(job.hirer, { $inc: { jobsDone: 1 } });
 
-      // Recompute trust scores for both immediately, so it's reflected
-      // even before either side leaves a star rating.
       for (const userId of [job.worker, job.hirer]) {
         const user = await User.findById(userId);
         if (user) {
