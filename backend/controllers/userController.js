@@ -30,11 +30,6 @@ export const updateMyProfile = async (req, res) => {
   res.json(user);
 };
 
-// GET /api/users/workers?skill=plumber&city=Delhi&lng=77.2&lat=28.6&radiusKm=10
-// Powers the "Find Workers" page. If lng/lat are provided (the hirer
-// granted browser location permission), this does real GPS-radius
-// matching - the actual "nearby" promise, same pattern as Uber/Swiggy.
-// Without coordinates, it gracefully falls back to the city text filter.
 export const searchWorkers = async (req, res) => {
   try {
     const { skill, city, lng, lat, radiusKm } = req.query;
