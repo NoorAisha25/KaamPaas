@@ -18,9 +18,6 @@ export default function PhotoUpload({ currentUrl, onUploaded, size = 96 }) {
     setError("");
     setUploading(true);
     try {
-      // Show the resized photo instantly (from the local dataUrl) while
-      // the actual upload to Cloudinary happens in the background - the
-      // person doesn't have to stare at a blank circle waiting.
       const { dataUrl, blob } = await resizeImageFile(file);
       setPreview(dataUrl);
 
