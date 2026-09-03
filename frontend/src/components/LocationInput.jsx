@@ -3,11 +3,6 @@ import { useLanguage } from "../context/LanguageContext";
 import { getCurrentCoords } from "../utils/geolocation";
 import Icon from "./Icon";
 
-// Uses OpenStreetMap's Nominatim - a free, no-API-key geocoding service.
-// Good enough for a project at this scale. Its fair-use policy asks for
-// max ~1 request/second, hence the debounce below. For a production app
-// with real traffic, swap this for Google Places or Mapbox (paid, but
-// much higher rate limits and better address coverage).
 export default function LocationInput({ value, onChange, placeholder }) {
   const { t } = useLanguage();
   const [query, setQuery] = useState(value || "");
